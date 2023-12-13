@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Товары {% endblock %}
+{% block header %}
+<div class="container">
+    <p> Корзина <a href='order/'> {{ quantity }}</a></p>
+{% endblock%}
+{% block content %}
+  {% for i in items %}
+        <p> Название <a href='/item/{{i.id}}/'> {{ i.name }}</a> </p>
+        <p> Цена {{i.price}} {{i.currency}}</p>
+        <form action='/order/{{i.id}}/' method="POST">
+            {% csrf_token %}
+             <p><label> <input type="hidden" name="item" value={{i.id}}> </label></p>
+            <input type="submit" value="Добавить в заказ">
+            <label> <input type="number" name="quantity" min=1 required="required" value=1> </label>
+        </form>
+        <form action='/order/{{i.id}}/' method="POST">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Удалить из заказа">
+        </form>
+        <br>
+  {% endfor %}
+</div>
+{% endblock %}

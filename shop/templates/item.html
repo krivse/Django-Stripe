@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title%} item {{id}} {% endblock %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+        <p> Название {{name}} </p>
+        <p> Описание {{description}} </p>
+        <p> Цена {{price}} {{currency}}</p>
+        <form action="/buy/{{id}}/" method="get">
+            <input type="submit" value="Купить">
+            <p> <label> USD <input type="checkbox" name="currency" value="USD"> </label></p>
+            <p> <label> RUB <input type="checkbox" name="currency" value="RUB"> </label></p>
+            <label> <input type="number" name="quantity" required="required" value="1"> </label>
+        </form>
+    </div>
+  </section>
+{% endblock %}

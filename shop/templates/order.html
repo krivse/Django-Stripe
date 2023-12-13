@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+  {% for order in orders %}
+    <p> Название {{ order.name }}</p>
+    <p> Количество {{ order.quantity }}</p>
+    <p> Сумма в USD {{ order.summ_dollar }}</p>
+    <p> Сумма в RUB {{ order.summ_rub }}</p>
+  {% endfor %} <br>
+  <form action='/buy/list/' method="get">
+    <p> <label> Общая сумма в USD ~{{ total_price_usd }} <input type="checkbox" name="currency" value="USD"> </label></p>
+    <p> <label> Общая сумма в RUB ~{{ total_price_rub }} <input type="checkbox" name="currency" value="RUB"> </label></p>
+    <input type="hidden" name="_method" value="get">
+    <input type="submit" value="Оплатить заказ">
+  </form>
+</div>
+{% endblock %}
