@@ -1,7 +1,6 @@
 from django.urls import path
 from .views import ItemViewSet, BuyViewSet, ItemsViewSet, OrderViewSet
 
-app_name = 'shop'
 
 urlpatterns = [
     path('order/', OrderViewSet.as_view({'get': 'list'})),
